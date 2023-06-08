@@ -69,3 +69,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# https://github.com/bkeepers/dotenv
+gem "dotenv-rails"
