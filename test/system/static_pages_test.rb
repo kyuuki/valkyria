@@ -4,6 +4,6 @@ class StaticPagesTest < ApplicationSystemTestCase
   test "visiting root" do
     visit root_url
 
-    assert_selector "h1", text: Rails.configuration.setting[:app_name]
+    assert_selector "h1", text: "SAILOR"
   end
 end
