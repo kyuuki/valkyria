@@ -19,4 +19,13 @@ Rails.application.routes.draw do
   get "/contact", to: "static_page#contact"
 
   resources :posts, only: [:index, :show]
+
+  # AdminLTE
+  namespace 'admin' do
+    root "static_page#root"
+    get "/general_form", to: "static_page#general_form"
+    get "/validation", to: "static_page#validation"
+    get "/profile", to: "static_page#profile"
+    get "/login", to: "static_page#login"
+  end
 end
