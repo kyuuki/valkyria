@@ -1,0 +1,16 @@
+<% content_for :header do %>
+  <% yield :menu_setting %>
+  <%= render "layouts/sailor/header" %>
+<% end %>
+  
+<% content_for :hero do %>
+  <% if defined?(@is_home) && @is_home %>
+    <%= render "layouts/sailor/hero" %>
+  <% end %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= render "layouts/sailor/footer" %>
+<% end %>
+
+<%= render template: "layouts/sailor/application_base" %>

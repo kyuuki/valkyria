@@ -1,0 +1,30 @@
+<article class="entry">
+
+  <!--
+  <div class="entry-img">
+    <img src="/assets/sailor/img/blog/blog-1.jpg" alt="" class="img-fluid">
+  </div>
+  -->
+
+  <h2 class="entry-title">
+    <%= link_to post.title, post %>
+  </h2>
+
+  <div class="entry-meta">
+    <ul>
+      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single">John Doe</a></li>
+      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single"><time datetime="2020-01-01"><%= l post.posted_at, format: :short %></time></a></li>
+      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single">12 Comments</a></li>
+    </ul>
+  </div>
+
+  <div class="entry-content">
+    <%= post.content.html_safe %>
+    <div class="read-more">
+      <%= link_to "Read More", "./posts/#{post.id}" %>
+    </div>
+  </div>
+
+</article><!-- End blog entry -->
+
+  

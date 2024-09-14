@@ -1,0 +1,42 @@
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center">
+
+    <h1 class="logo me-auto"><a href="/"><%= @site.name %></a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><%= link_to "Home", root_path, class: @menu == :home ? "active" : nil %></li>
+
+        <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><%= link_to "About", about_path, class: @menu == :about ? "active" : nil %></li>
+            <li><%= link_to "Team", team_path, class: @menu == :team ? "active" : nil %></li>
+            <li><%= link_to "Testimonials", testimonials_path, class: @menu == :testimonials ? "active" : nil %></li>
+
+            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+              <ul>
+                <li><a href="#">Deep Drop Down 1</a></li>
+                <li><a href="#">Deep Drop Down 2</a></li>
+                <li><a href="#">Deep Drop Down 3</a></li>
+                <li><a href="#">Deep Drop Down 4</a></li>
+                <li><a href="#">Deep Drop Down 5</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><%= link_to "Services", services_path, class: @menu == :services ? "active" : nil %></li>
+        <li><%= link_to "Portfolio", portfolio_path, class: @menu == :portfolio ? "active" : nil %></li>
+        <li><%= link_to "Pricing", pricing_path, class: @menu == :pricing ? "active" : nil %></li>
+        <li><%= link_to "Blog", posts_path, class: @menu == :blog ? "active" : nil %></li>
+
+        <li><%= link_to "Contact", contact_path, class: @menu == :contact ? "active" : nil %></li>
+        <li><a href="/" class="getstarted">Get Started</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->

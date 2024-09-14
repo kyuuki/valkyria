@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>
+    <%= content_for(:title) ? yield(:title) + " - " : "" %><%= @site.name %>
+  </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Favicons -->
+  <link href="/assets/sailor/img/favicon.png" rel="icon">
+  <link href="/assets/sailor/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/sailor/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/assets/sailor/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/sailor/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/sailor/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/sailor/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/sailor/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/sailor/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/sailor/css/style.css" rel="stylesheet">
+
+  <%= stylesheet_link_tag "application" %>
+
+  <!-- =======================================================
+  * Template Name: Sailor
+  * Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <%= yield :header %>
+
+  <%= yield :hero %>
+
+  <main id="main">
+
+    <%= yield %>
+
+  </main><!-- End #main -->
+
+  <%= yield :footer %>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/sailor/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/sailor/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/sailor/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/sailor/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/sailor/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/assets/sailor/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/sailor/js/main.js"></script>
+
+  <%= javascript_importmap_tags %>
+
+</body>
+
+</html>
