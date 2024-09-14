@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   layout :sites_layout
 
   def index
-    @posts = Post.all
+    @posts = @site.posts
   end
 
   def show

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root "posts#index"
   # root to: "static_page#home"  # 上記はこれの省略形
 
-  get "/about", to: "static_pate#about"
+  get "/about", to: "static_page#about"
   get "/team", to: "static_page#team"
   get "/testimonials", to: "static_page#testimonials"
   get "/services", to: "static_page#services"
