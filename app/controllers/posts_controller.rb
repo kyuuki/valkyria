@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   layout :sites_layout
 
   def index
-    @posts = @site.posts
+    @posts = @site.posts.order(posted_at: :desc)
   end
 
   def show

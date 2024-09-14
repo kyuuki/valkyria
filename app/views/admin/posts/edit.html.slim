@@ -1,0 +1,12 @@
+- content_for :title, "投稿編集"
+
+- content_for :breadcrumb_setting do
+  - @breadcrumb = [ \
+      { name: "Home", path: admin_root_path }, \
+      { name: "投稿編集" } \
+    ]
+
+.row
+  .col-lg-12
+    = render "form", post: @post
+          

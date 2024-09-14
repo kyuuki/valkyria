@@ -27,5 +27,7 @@ Rails.application.routes.draw do
     get "/validation", to: "static_page#validation"
     get "/profile", to: "static_page#profile"
     get "/login", to: "static_page#login"
+
+    resources :posts
   end
 end

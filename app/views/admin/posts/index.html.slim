@@ -1,0 +1,28 @@
+- content_for :title, "投稿一覧"
+
+- content_for :breadcrumb_setting do
+  - @breadcrumb = [ \
+      { name: "Home", path: admin_root_path }, \
+      { name: "投稿一覧" } \
+    ]
+
+.row
+  .col-lg-12
+    .card
+      .card-header
+        = link_to new_admin_post_path, class: "btn btn-primary"
+          | 新規作成
+        /== paginate @messages
+      .card-body
+        table.table.table-bordered
+          thead
+            tr
+              th style="width: 100px" ID
+              th タイトル
+              th 内容
+              th ステータス
+              th style="width: 180px" 作成日
+          tbody
+            = render @posts
+      .card-footer
+        /== paginate @messages

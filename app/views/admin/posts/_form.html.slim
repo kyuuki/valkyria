@@ -1,0 +1,24 @@
+.card.card-primary
+  .card-header
+    h3.card-title
+  = form_with(model: [:admin, post], local: true, html: { class: "form-horizontal" }) do |form|
+    .card-body
+      .form-group
+        = form.label :title, "タイトル"
+        = form.text_field :title, { class: "form-control col-sm-8" }
+      .form-group
+        = form.label :content, "内容"
+        = form.text_area :content, size: "10x10", class: "form-control"
+      .form-group
+        / https://railsguides.jp/form_helpers.html#collection-select%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC
+        / https://qiita.com/BRSF/items/ed299a936a544755c53e
+        = form.collection_check_boxes :site_ids, Site.all, :id, :name do |b|
+          .form-check
+            = b.check_box(class: "form-check-input")
+            = b.label(class: "form-check-label") { b.text }
+      .form-group
+        = form.label :posted_at, "投稿日時"
+        = form.datetime_field :posted_at, { class: "form-control col-sm-4" }
+    .card-footer
+      = form.submit "更新", class: "btn btn-primary"
+

@@ -67,6 +67,15 @@
           </a>
         </li>
 
+        <% this_menu = :posts %>
+        <li class="nav-item">
+          <% c = menu == this_menu ? "nav-link active" : "nav-link" %>
+          <%= link_to admin_posts_path, class: c do %>
+            <i class="nav-icon fas fa-circle"></i>
+            <p>投稿</p>
+          <% end %>
+        </li>
+
         <li class="nav-header">SAMPLES</li>
 
         <% this_menu = :general_form %>
