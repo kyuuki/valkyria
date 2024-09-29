@@ -9,9 +9,4 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
-
-  private
-    def sites_layout
-      @site.template
-    end
 end
