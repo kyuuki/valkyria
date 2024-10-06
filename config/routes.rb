@@ -29,5 +29,6 @@ Rails.application.routes.draw do
     get "/login", to: "static_page#login"
 
     resources :posts
+    resources :sites
   end
 end

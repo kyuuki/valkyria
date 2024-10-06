@@ -67,6 +67,15 @@
           </a>
         </li>
 
+        <% this_menu = :sites %>
+        <li class="nav-item">
+          <% c = menu == this_menu ? "nav-link active" : "nav-link" %>
+          <%= link_to admin_sites_path, class: c do %>
+            <i class="nav-icon fas fa-circle"></i>
+            <p>サイト</p>
+          <% end %>
+        </li>
+
         <% this_menu = :posts %>
         <li class="nav-item">
           <% c = menu == this_menu ? "nav-link active" : "nav-link" %>

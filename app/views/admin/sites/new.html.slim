@@ -1,0 +1,12 @@
+- content_for :title, "サイト作成"
+
+- content_for :breadcrumb_setting do
+  - @breadcrumb = [ \
+      { name: "Home", path: admin_root_path }, \
+      { name: "サイト作成" } \
+    ]
+
+.row
+  .col-lg-12
+    = render "form", site: @site
+          

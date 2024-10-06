@@ -1,9 +1,9 @@
 class Admin::PostsController < Admin::ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_menu
 
   # GET /posts
   def index
-    @menu = :posts
     @posts = Post.all.order(posted_at: :desc)
   end
 
@@ -56,5 +56,9 @@ class Admin::PostsController < Admin::ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :content, :posted_at, :status, site_ids: [])
+    end
+
+    def set_menu
+      @menu = :posts
     end
 end

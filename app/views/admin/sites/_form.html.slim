@@ -1,0 +1,23 @@
+.card.card-primary
+  .card-header
+    h3.card-title
+      - if site.errors.any?
+        p = t("errors.template.header", model: Site.model_name.human, count: site.errors.count)
+        ul
+          - site.errors.each do |error|
+            li = error.full_message
+
+  = form_with(model: [:admin, site], local: true, html: { class: "form-horizontal" }) do |form|
+    .card-body
+      .form-group
+        = form.label :host, "ホスト"
+        = form.text_field :host, { class: "form-control col-sm-8" }
+      .form-group
+        = form.label :name, "名前"
+        = form.text_field :name, { class: "form-control col-sm-8" }
+      .form-group
+        = form.label :template, "テンプレート"
+        = form.text_field :template, { class: "form-control col-sm-8" }
+    .card-footer
+      = form.submit "更新", class: "btn btn-primary"
+
