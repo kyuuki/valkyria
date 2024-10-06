@@ -75,3 +75,11 @@ gem "dotenv-rails"
 
 # https://github.com/slim-template/slim-rails
 gem "slim-rails"
+
+# Kaminari
+# https://github.com/kaminari/kaminari
+gem "kaminari"
+
+# 18n
+# https://github.com/svenfuchs/rails-i18n
+gem "rails-i18n"
