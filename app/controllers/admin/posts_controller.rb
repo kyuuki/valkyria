@@ -14,6 +14,7 @@ class Admin::PostsController < Admin::ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @post.posted_at = Time.zone.now.change(hour: 0, min: 0, sec: 0)
   end
 
   # GET /posts/1/edit
