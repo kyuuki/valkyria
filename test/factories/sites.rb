@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :site do
     host { "MyString" }
-    name { "MyString" }
-    template { "MyString" }
+    name { "SAILOR" }
+    template { "sailor" }
   end
 end

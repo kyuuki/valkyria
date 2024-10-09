@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def set_site
     @site = Site.find_by(host: request.host)
 
-    @site = Site.find(1) if @site.nil?
+    @site = Site.first if @site.nil?
   end
 
   private
