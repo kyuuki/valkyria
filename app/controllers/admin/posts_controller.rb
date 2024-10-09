@@ -55,7 +55,7 @@ class Admin::PostsController < Admin::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :content, :posted_at, :status, site_ids: [])
+      params.require(:post).permit(:title, :content, :posted_at, :status, site_ids: [], tag_ids: [])
     end
 
     def set_menu

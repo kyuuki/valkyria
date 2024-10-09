@@ -21,7 +21,7 @@ class Admin::SitesController < Admin::ApplicationController
   def edit
   end
 
-  # SITE /sites
+  # POST /sites
   def create
     @site = Site.new(site_params)
 

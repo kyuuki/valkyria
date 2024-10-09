@@ -1,0 +1,6 @@
+tr
+  td = link_to tag.id, edit_admin_tag_path(tag)
+  td = tag.name
+  td = tag.color
+  td
+    = l tag.created_at, format: :long

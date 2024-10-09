@@ -23,6 +23,13 @@
             = b.check_box(class: "form-check-input")
             = b.label(class: "form-check-label") { b.text }
       .form-group
+        / https://railsguides.jp/form_helpers.html#collection-select%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC
+        / https://qiita.com/BRSF/items/ed299a936a544755c53e
+        = form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b|
+          .form-check
+            = b.check_box(class: "form-check-input")
+            = b.label(class: "form-check-label") { b.text }
+      .form-group
         = form.label :posted_at, "投稿日時"
         = form.datetime_field :posted_at, { class: "form-control col-sm-4" }
     .card-footer

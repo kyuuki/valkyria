@@ -18,7 +18,11 @@ Rails.application.routes.draw do
   get "/blog-single", to: "static_page#blog_single"
   get "/contact", to: "static_page#contact"
 
-  resources :posts, only: [:index, :show]
+  resources :posts, only: [:index, :show] do
+    collection do
+      get "tags/:tag_id", to: "posts#tags"
+    end
+  end
 
   # AdminLTE
   namespace "admin" do
@@ -30,5 +34,6 @@ Rails.application.routes.draw do
 
     resources :posts
     resources :sites
+    resources :tags
   end
 end

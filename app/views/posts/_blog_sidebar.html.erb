@@ -59,10 +59,11 @@
   <h3 class="sidebar-title">Tags</h3>
   <div class="sidebar-item tags">
     <ul>
-      <li><a href="#">雑記</a></li>
-      <li><a href="#">お金</a></li>
-      <li><a href="#">整理法</a></li>
-      <li><a href="#">IT</a></li>
+      <% Tag.order(:name).each do |tag| %>
+        <li>
+          <%= link_to tag.name, "/posts/tags/#{tag.id}" %>
+        </li>
+      <% end %>
     </ul>
   </div><!-- End sidebar tags-->
 

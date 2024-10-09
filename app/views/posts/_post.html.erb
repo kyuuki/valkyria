@@ -27,7 +27,7 @@
   <div class="entry-content">
     <%= strip_tags(post.content).truncate(100) %>
     <div class="read-more">
-      <%= link_to "Read More", "./posts/#{post.id}" %>
+      <%= link_to "Read More", post %>
     </div>
   </div>
 

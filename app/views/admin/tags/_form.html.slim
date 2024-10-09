@@ -1,0 +1,20 @@
+.card.card-primary
+  .card-header
+    h3.card-title
+      - if tag.errors.any?
+        p = t("errors.template.header", model: Tag.model_name.human, count: tag.errors.count)
+        ul
+          - tag.errors.each do |error|
+            li = error.full_message
+
+  = form_with(model: [:admin, tag], local: true, html: { class: "form-horizontal" }) do |form|
+    .card-body
+      .form-group
+        = form.label :name, "名前"
+        = form.text_field :name, { class: "form-control col-sm-8" }
+      .form-group
+        = form.label :color, "色"
+        = form.text_field :color, { class: "form-control col-sm-8" }
+    .card-footer
+      = form.submit "更新", class: "btn btn-primary"
+
