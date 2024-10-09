@@ -59,7 +59,7 @@
   <h3 class="sidebar-title">Tags</h3>
   <div class="sidebar-item tags">
     <ul>
-      <% Tag.order(:name).each do |tag| %>
+      <% @site.tags.order(:name).each do |tag| %>
         <li>
           <%= link_to tag.name, "/posts/tags/#{tag.id}" %>
         </li>

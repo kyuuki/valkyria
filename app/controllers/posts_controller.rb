@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def tags
-    @posts = @site.posts.includes(:tags).where(tags: {id: params[:tag_id]}).order(posted_at: :desc).page(params[:page])
+    @posts = @site.posts.includes(:tags).where(tags: { id: params[:tag_id] }).order(posted_at: :desc).page(params[:page])
     render :index
   end
 
