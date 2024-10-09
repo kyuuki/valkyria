@@ -16,10 +16,11 @@
 
     <div class="row content">
       <div class="col-lg-6">
-        <h2><%= @site.name %></h2>
-        <h3></h3>
+        <%= @site.catch.html_safe %>
       </div>
       <div class="col-lg-6 pt-4 pt-lg-0">
+        <%= @site.about.html_safe %>
+        <!--
         <p>
         </p>
         <ul>
@@ -30,6 +31,7 @@
         <p class="fst-italic">
           分かりやすい文章を心がけています。
         </p>
+        -->
       </div>
     </div>
 

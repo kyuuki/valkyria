@@ -55,7 +55,7 @@ class Admin::SitesController < Admin::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def site_params
-      params.require(:site).permit(:host, :name, :template)
+      params.require(:site).permit(:host, :name, :template, :catch, :about)
     end
 
     def set_menu

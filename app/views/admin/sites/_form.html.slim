@@ -18,6 +18,12 @@
       .form-group
         = form.label :template, "テンプレート"
         = form.text_field :template, { class: "form-control col-sm-8" }
+      .form-group
+        = form.label :catch, "キャッチ"
+        = form.text_area :catch, size: "10x5", class: "form-control"
+      .form-group
+        = form.label :about, "About"
+        = form.text_area :about, size: "10x10", class: "form-control"
     .card-footer
       = form.submit "更新", class: "btn btn-primary"
 
