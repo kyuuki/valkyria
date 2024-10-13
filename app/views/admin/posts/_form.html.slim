@@ -1,13 +1,14 @@
 .card.card-primary
-  .card-header
-    h3.card-title
-      - if post.errors.any?
-        p = t("errors.template.header", model: Post.model_name.human, count: post.errors.count)
-        ul
-          - post.errors.each do |error|
-            li = error.full_message
-
   = form_with(model: [:admin, post], local: true, html: { class: "form-horizontal" }) do |form|
+    .card-header
+      h3.card-title
+        - if post.errors.any?
+          p = t("errors.template.header", model: Post.model_name.human, count: post.errors.count)
+          ul
+            - post.errors.each do |error|
+              li = error.full_message
+
+      = form.submit "更新", class: "btn btn-primary"
     .card-body
       .form-group
         = form.label :title, "タイトル"

@@ -27,7 +27,7 @@ class Admin::PostsController < Admin::ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to admin_posts_url, notice: "登録しました。"
+      redirect_to edit_admin_post_url(@post), notice: "登録しました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class Admin::PostsController < Admin::ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to admin_posts_url, notice: "更新しました。"
+      redirect_to edit_admin_post_url(@post), notice: "更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end
