@@ -1,0 +1,40 @@
+<div class="col-lg-6">
+  <article class="position-relative h-100">
+
+    <div class="post-img position-relative overflow-hidden">
+      <!--
+      <img src="/zenblog/assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
+      -->
+      <span class="post-date"><%= l post.posted_at.to_date %></span>
+    </div>
+
+    <div class="post-content d-flex flex-column">
+
+      <h3 class="post-title"><%= link_to post.title, post %></h3>
+
+      <!--
+      <div class="meta d-flex align-items-center">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-person"></i> <span class="ps-2">Julia Parker</span>
+        </div>
+        <span class="px-3 text-black-50">/</span>
+        <div class="d-flex align-items-center">
+          <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span>
+        </div>
+      </div>
+      -->
+
+      <p>
+        <%= strip_tags(post.content).truncate(100) %>
+      </p>
+
+      <hr>
+
+      <%= link_to post, class: "readmore stretched-link" do %>
+        <span>Read More</span><i class="bi bi-arrow-right"></i>
+      <% end %>
+
+    </div>
+
+  </article>
+</div><!-- End post list item -->

@@ -4,6 +4,7 @@ class StaticPageController < ApplicationController
   end
 
   def about
+    render "#{@site.template}/static_page/about"
   end
 
   def team
@@ -32,5 +33,6 @@ class StaticPageController < ApplicationController
   end
 
   def contact
+    render "#{@site.template}/static_page/contact"
   end
 end

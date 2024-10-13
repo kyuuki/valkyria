@@ -1,0 +1,81 @@
+<% content_for :title, @post.title %>
+
+<% content_for :menu_setting do %>
+  <% @menu = :blog %>
+<% end %>
+
+<% content_for :breadcrumbs_setting do %>
+  <% @breadcrumbs = [
+       [ "Home", root_path ],
+       [ "Blog", nil ],
+     ] %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-8">
+
+      <!-- Blog Details Section -->
+      <section id="blog-details" class="blog-details section">
+        <div class="container">
+
+          <article class="article">
+
+            <!--
+            <div class="post-img">
+              <img src="/zenblog/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+            </div>
+            -->
+
+            <h2 class="title">
+              <%= @post.title %>
+            </h2>
+
+            <div class="meta-top">
+              <ul>
+                <!--
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>-->
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i>
+                  <%= link_to @post do %>
+                    <time datetime="2020-01-01"><%= l @post.posted_at.to_date %></time>
+                  <% end %>
+                </li>
+                <!--
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>-->
+              </ul>
+            </div><!-- End meta top -->
+
+            <div class="content">
+              <%= @post.content.html_safe %>
+            </div><!-- End post content -->
+
+            <div class="meta-bottom">
+              <!--
+              <i class="bi bi-folder"></i>
+              <ul class="cats">
+                <li><a href="#">Business</a></li>
+              </ul>
+              -->
+
+              <i class="bi bi-tags"></i>
+              <ul class="tags">
+                <% @post.tags.order(:name).each do |tag| %>
+                  <li>
+                    <%= link_to tag.name, "/posts/tags/#{tag.id}" %>
+                  </li>
+                <% end %>
+              </ul>
+            </div><!-- End meta bottom -->
+
+          </article>
+
+        </div>
+      </section><!-- /Blog Details Section -->
+
+    </div>
+
+    <%= render "zenblog/posts/blog_sidebar" %>
+
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<!-- Page Title -->
+<div class="page-title">
+  <div class="container d-lg-flex justify-content-between align-items-center">
+    <h1 class="mb-2 mb-lg-0"><%= breadcrumbs.last[0] %></h1>
+    <nav class="breadcrumbs">
+      <ol>
+        <% breadcrumbs.each do |breadcrumb| %>
+          <% if (breadcrumb[1].nil?) %>
+            <li class="current"><%= breadcrumb[0] %></li>
+          <% else %>
+            <li><%= link_to breadcrumb[0], breadcrumb[1] %></li>
+          <% end %>
+        <% end %>
+      </ol>
+    </nav>
+  </div>
+</div><!-- End Page Title -->

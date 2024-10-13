@@ -3,15 +3,18 @@ class PostsController < ApplicationController
   layout :sites_layout
 
   def index
+    @is_home = true
     @posts = @site.posts.order(posted_at: :desc).page(params[:page])
+    render "#{@site.template}/posts/index"
   end
 
   def tags
     @posts = @site.posts.includes(:tags).where(tags: { id: params[:tag_id] }).order(posted_at: :desc).page(params[:page])
-    render :index
+    render "#{@site.template}/posts/index"
   end
 
   def show
     @post = Post.find(params[:id])
+    render "#{@site.template}/posts/show"
   end
 end

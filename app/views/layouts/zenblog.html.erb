@@ -1,0 +1,18 @@
+<% content_for :header do %>
+  <% yield :menu_setting %>
+  <%= render "layouts/zenblog/header" %>
+<% end %>
+  
+<% content_for :page_title do %>
+  <% if (not defined?(@is_home)) || @is_home == false %>
+    <% yield :breadcrumbs_setting %>
+    <%= render "layouts/zenblog/page_title", breadcrumbs: @breadcrumbs %>
+  <% end %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= render "layouts/zenblog/footer" %>
+<% end %>
+
+<%= render template: "layouts/zenblog/application_base" %>
+
