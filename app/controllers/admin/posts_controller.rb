@@ -4,7 +4,8 @@ class Admin::PostsController < Admin::ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all.order(posted_at: :desc)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.order(posted_at: :desc).page(params[:page]).per(30)
   end
 
   # GET /posts/1

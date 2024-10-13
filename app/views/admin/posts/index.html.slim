@@ -9,10 +9,25 @@
 .row
   .col-lg-12
     .card
+      == search_form_for @q, url: admin_posts_path do |f|
+        .card-header
+          | 検索
+
+        .card-body
+          .row
+            .col-sm-3
+              .form-group
+                = f.label :sites_id_eq, "サイト"
+                = f.collection_select :sites_id_eq, Site.all, :id, :name, { include_blank: true }, { class: "form-control" }
+
+        .card-footer
+          = f.submit "検索", class: "btn btn-default"
+
+    .card
       .card-header
+        == paginate @posts, views_prefix: "admin"
         = link_to new_admin_post_path, class: "btn btn-primary"
           | 新規作成
-        /== paginate @messages
       .card-body
         table.table.table-bordered
           thead
@@ -25,4 +40,6 @@
           tbody
             = render @posts
       .card-footer
-        /== paginate @messages
+        == paginate @posts, views_prefix: "admin"
+
+

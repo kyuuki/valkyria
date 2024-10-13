@@ -83,3 +83,9 @@ gem "kaminari"
 # 18n
 # https://github.com/svenfuchs/rails-i18n
 gem "rails-i18n"
+
+# Ransack
+# https://github.com/activerecord-hackery/ransack
+# https://nekorails.hatenablog.com/entry/2017/05/31/173925
+gem "ransack"
+
