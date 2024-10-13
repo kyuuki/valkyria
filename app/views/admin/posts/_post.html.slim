@@ -1,7 +1,8 @@
 tr
   td = link_to post.id, edit_admin_post_path(post)
-  td = post.title
-  td style="word-break: break-all" = post.content
-  td = post.status
   td
     = l post.posted_at, format: :long
+  td = post.title
+  td style="word-break: break-all" = strip_tags(post.content).truncate(30)
+  td = post.status
+
