@@ -2,9 +2,9 @@
   <article class="position-relative h-100">
 
     <div class="post-img position-relative overflow-hidden">
-      <!--
-      <img src="/zenblog/assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
-      -->
+      <% unless post.thumbnail.nil? %>
+        <img src="<%= post.thumbnail %>" class="img-fluid" alt="">
+      <% end %>
       <span class="post-date"><%= l post.posted_at.to_date %></span>
     </div>
 

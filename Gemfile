@@ -88,4 +88,3 @@ gem "rails-i18n"
 # https://github.com/activerecord-hackery/ransack
 # https://nekorails.hatenablog.com/entry/2017/05/31/173925
 gem "ransack"
-

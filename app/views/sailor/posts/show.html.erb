@@ -20,11 +20,11 @@
 
         <article class="entry entry-single">
 
-          <!--
+          <% unless @post.thumbnail.nil? %>
           <div class="entry-img">
-            <img src="/assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
+            <img src="<%= @post.thumbnail %>" alt="" class="img-fluid">
           </div>
-          -->
+          <% end %>
 
           <h2 class="entry-title">
             <%= link_to @post.title, @post %>

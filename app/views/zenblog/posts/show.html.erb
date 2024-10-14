@@ -22,11 +22,11 @@
 
           <article class="article">
 
-            <!--
+            <% unless @post.thumbnail.nil? %>
             <div class="post-img">
-              <img src="/zenblog/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+              <img src="<%= @post.thumbnail %>" alt="" class="img-fluid">
             </div>
-            -->
+            <% end %>
 
             <h2 class="title">
               <%= @post.title %>

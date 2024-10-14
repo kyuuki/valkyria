@@ -4,7 +4,11 @@ class PostsController < ApplicationController
 
   def index
     @is_home = true
-    @posts = @site.posts.order(posted_at: :desc).page(params[:page])
+    #@posts = @site.posts.order(posted_at: :desc).page(params[:page])
+    @posts = @site.posts.includes(:postmetum).order(posted_at: :desc).page(params[:page])
+    # ↑これでも meta_key が "thubnail" のものをとってくるときに毎回検索てしまう
+    # TODO: あとで効率化は実験しよう
+
     render "#{@site.template}/posts/index"
   end
 
