@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>
-    <%= content_for(:title) ? yield(:title) + " - " : "" %><%= Rails.configuration.setting[:app_name] %>
+    <%= content_for(:title) ? yield(:title) + " - " : "" %><%= @site.name %>
   </title>
   <meta name="description" content="">
   <meta name="keywords" content="">
