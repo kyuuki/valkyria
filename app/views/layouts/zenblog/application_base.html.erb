@@ -38,6 +38,43 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
+  <!-- hightlight.js -->
+  <!-- https://highlightjs.org/#usage -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- and it's easy to individually load additional languages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+  <script>hljs.highlightAll();</script>
+
+  <style>
+    h3 {
+        margin: 32px 0 16px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid rgb(0 0 0 / 12%);
+    }
+    h4 {
+        font-size: 1.2rem;
+    }
+
+    .title, .post-title, .post-content, .content {
+        font-family:
+            "Noto Sans JP",  /* Web フォントを使う場合 */
+            "Helvetica Neue",
+            "Arial",
+            "Hiragino Kaku Gothic ProN",
+            "Hiragino Sans",
+            "Meiryo",
+            sans-serif;
+    }
+
+    .readmore {
+        font-family: var(--default-font);
+    }
+    
+  </style>
+
   <%= render "layouts/analytics" %>
 </head>
 
