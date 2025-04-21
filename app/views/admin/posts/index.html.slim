@@ -26,8 +26,10 @@
     .card
       .card-header
         == paginate @posts, views_prefix: "admin"
-        = link_to new_admin_post_path, class: "btn btn-primary"
+        = link_to new_admin_post_path, class: "btn btn-primary mr-2"
           | 新規作成
+        = link_to org_new_admin_posts_path, class: "btn btn-primary"
+          | Org 投稿
       .card-body
         table.table.table-bordered
           thead

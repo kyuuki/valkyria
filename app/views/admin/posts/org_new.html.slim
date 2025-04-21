@@ -1,0 +1,18 @@
+- content_for :title, "Org 入稿"
+
+- content_for :breadcrumb_setting do
+  - @breadcrumb = [ \
+      { name: "Home", path: admin_root_path }, \
+      { name: "Org 入稿" } \
+    ]
+
+.row
+  .col-lg-12
+    .card.card-primary
+      = form_with url: org_save_admin_posts_path, method: :post do |form|
+        .card-body
+          .form-group
+            = form.label :content, "入稿データ"
+            = form.text_area :content, size: "10x10", class: "form-control"
+        .card-footer
+           = form.submit "更新", class: "btn btn-primary"

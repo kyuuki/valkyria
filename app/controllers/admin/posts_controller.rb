@@ -71,6 +71,56 @@ class Admin::PostsController < Admin::ApplicationController
     redirect_to posts_url, notice: "削除しました。"
   end
 
+  #
+  # Org データを入稿
+  #
+  def org_new
+  end
+
+  def org_save
+    content = ""
+    title = nil
+    post_id = nil
+
+    params[:content].each_line do |line|
+      if line.match?(/^#\+TITLE:/)
+        title = line.gsub(/^#\+TITLE: +/, "")
+        next
+      end
+
+      if line.match?(/^#\+POST_ID:/)
+        post_id = line.gsub(/^#\+POST_ID: +/, "").to_i
+        next
+      end
+
+      content << line
+    end
+
+    @post = Post.find(post_id)
+    @post.title = title
+
+    html = Orgmode::Parser.new(content).to_html
+    doc = Nokogiri::HTML5.fragment(html)
+    doc.at_css("h3").remove
+    doc.css("h4").map { |x| x.name = "h3" }
+
+    # このやり方だと </code> と </pre> の間に改行が入る
+    doc.css("pre").map { |x|
+      lang = x.attr("lang")
+      lang = "shell" if lang == "sh"
+      x.name = "code"
+      x["class"] = "language-#{lang}"
+      x.wrap("<pre></pre>")
+    }
+
+    @post.content = doc.to_xml
+
+    # 汚いけど </code> と </pre> の間に改行が入るのに対処
+    @post.content.gsub!(/<\/code>\n+<\/pre>/, "</code></pre>")
+
+    @post.save
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

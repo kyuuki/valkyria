@@ -32,7 +32,12 @@ Rails.application.routes.draw do
     get "/profile", to: "static_page#profile"
     get "/login", to: "static_page#login"
 
-    resources :posts
+    resources :posts do
+      collection do
+        get "/org_new", to: "posts#org_new"
+        post "/org_save", to: "posts#org_save"
+      end
+    end
     resources :sites
     resources :tags
   end
