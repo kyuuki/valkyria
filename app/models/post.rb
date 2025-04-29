@@ -39,6 +39,6 @@ class Post < ApplicationRecord
   end
 
   def youtube_thumbnail
-    "https://img.youtube.com/vi/#{youtube_id}/hqdefault.jpg"
+    "https://img.youtube.com/vi/#{youtube_id}/maxresdefault.jpg"
   end
 end
