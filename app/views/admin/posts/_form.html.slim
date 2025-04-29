@@ -38,6 +38,10 @@
         = label_tag :thumbnail, "サムネイル"
         = text_field_tag :thumbnail, @thumbnail, { class: "form-control col-sm-4" }
 
+      .form-group
+        = label_tag :youtube_id, "YouTube ID"
+        = text_field_tag :youtube_id, @youtube_id, { class: "form-control col-sm-4" }
+
     .card-footer
       = form.submit "更新", class: "btn btn-primary"
 

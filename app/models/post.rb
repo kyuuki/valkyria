@@ -15,6 +15,14 @@ class Post < ApplicationRecord
     ["sites", "tags"]
   end
 
+  # メタ情報
+  def find_or_build_postmeta(key)
+    pm = postmetum.find_by(meta_key: key)
+    pm = postmetum.build(meta_key: key) if pm.nil?
+
+    pm
+  end
+
   # サムネイル取得
   # TODO: 効率化
   def postmeta_thumbnail
@@ -23,5 +31,14 @@ class Post < ApplicationRecord
 
   def thumbnail
     postmetum.find_by(meta_key: "thubmnail")&.meta_value
+  end
+
+  # YouTube ID
+  def youtube_id
+    postmetum.find_by(meta_key: "youtube_id")&.meta_value
+  end
+
+  def youtube_thumbnail
+    "https://img.youtube.com/vi/#{youtube_id}/hqdefault.jpg"
   end
 end

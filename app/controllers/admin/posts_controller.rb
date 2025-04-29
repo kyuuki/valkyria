@@ -21,12 +21,10 @@ class Admin::PostsController < Admin::ApplicationController
   # GET /posts/1/edit
   def edit
     # サムネイル
-    postmeta = @post.postmetum.where(meta_key: "thubmnail").first
-    if postmeta.nil?
-      @thumbnail = ""
-    else
-      @thumbnail = postmeta.meta_value
-    end
+    @thumbnail = @post.thumbnail unless @post.thumbnail.nil?
+
+    # YouTube ID
+    @youtube_id = @post.youtube_id unless @post.youtube_id.nil?
   end
 
   # POST /posts
@@ -36,6 +34,11 @@ class Admin::PostsController < Admin::ApplicationController
     # サムネイル
     unless params["thumbnail"].blank?
       @post.postmetum.new(meta_key: "thubmnail", meta_value: params["thumbnail"])
+    end
+
+    # YouTube ID
+    unless params["youtube_id"].blank?
+      @post.postmetum.new(meta_key: "youtube_id", meta_value: params["youtube_id"])
     end
 
     if @post.save
@@ -51,10 +54,17 @@ class Admin::PostsController < Admin::ApplicationController
     if params["thumbnail"].blank?
       @post.postmetum.find_by(meta_key: "thubmnail")&.destroy
     else
-      pm = @post.postmetum.find_by(meta_key: "thubmnail")
-      pm = @post.postmetum.build(meta_key: "thubmnail") if pm.nil?
-
+      pm = @post.find_or_build_postmeta("thubmnail")
       pm.meta_value = params["thumbnail"]
+      pm.save!  # 本当はトランザクション
+    end
+
+    # YouTube ID
+    if params["youtube_id"].blank?
+      @post.postmetum.find_by(meta_key: "youtube_id")&.destroy
+    else
+      pm = @post.find_or_build_postmeta("youtube_id")
+      pm.meta_value = params["youtube_id"]
       pm.save!  # 本当はトランザクション
     end
 

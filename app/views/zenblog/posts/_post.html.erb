@@ -2,8 +2,10 @@
   <article class="position-relative h-100">
 
     <div class="post-img position-relative overflow-hidden">
-      <% unless post.thumbnail.nil? %>
+      <% if !post.thumbnail.nil? %>
         <img src="<%= post.thumbnail %>" class="img-fluid" alt="">
+      <% elsif !post.youtube_id.nil? %>
+        <img src="<%= post.youtube_thumbnail %>" class="img-fluid" alt="">
       <% end %>
       <span class="post-date"><%= l post.posted_at.to_date %></span>
     </div>
