@@ -28,9 +28,16 @@
             </div>
             <% end %>
 
+            <% if @post.thumbnail.nil? %>
+            <%# ブログの画像がないときに上の余白を消す (そもそも全体のボックスの上マージンが大きすぎる) %>
+            <h2 class="title title-noimg">
+              <%= @post.title %>
+            </h2>
+            <% else %>
             <h2 class="title">
               <%= @post.title %>
             </h2>
+            <% end %>
 
             <div class="meta-top">
               <ul>
