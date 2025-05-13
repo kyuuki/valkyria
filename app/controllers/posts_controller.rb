@@ -17,8 +17,11 @@ class PostsController < ApplicationController
     render "#{@site.template}/posts/index"
   end
 
+  #
+  # ブログ記事表示
+  #
   def show
-    @post = Post.find(params[:id])
+    @post = @site.posts.find(params[:id])
     render "#{@site.template}/posts/show"
   end
 end
