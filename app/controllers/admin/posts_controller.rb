@@ -114,6 +114,18 @@ class Admin::PostsController < Admin::ApplicationController
     doc.at_css("h3").remove
     doc.css("h4").map { |x| x.name = "h3" }
 
+    # \\ → 改行が複数あると上手く変換できないバグがある
+    # TODO: 全体的なシステムフローを再検討する必要はありそう。Gem Orgmode は廃止したい
+    doc.css("p").map { |x|
+      text = x.text
+      x.children.remove
+
+      text.split("\n").each_with_index do |line, idx|
+        x.add_child(Nokogiri::XML::Text.new(line, doc))
+        x.add_child(Nokogiri::XML::Node.new('br', doc)) unless idx == text.split("\n").size - 1
+      end
+    }
+
     # このやり方だと </code> と </pre> の間に改行が入る
     doc.css("pre").map { |x|
       lang = x.attr("lang")
@@ -125,8 +137,10 @@ class Admin::PostsController < Admin::ApplicationController
 
     @post.content = doc.to_xml
 
+    # <pre> と <code> の間にいろいろ入るのに対処
+    @post.content.gsub!(/<pre>\s+<code/, "<pre><code")
     # 汚いけど </code> と </pre> の間に改行が入るのに対処
-    @post.content.gsub!(/<\/code>\n+<\/pre>/, "</code></pre>")
+    @post.content.gsub!(/<\/code>\s+<\/pre>/, "</code></pre>")
 
     @post.save
   end
