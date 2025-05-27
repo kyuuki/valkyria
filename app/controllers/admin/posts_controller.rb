@@ -2,6 +2,8 @@ class Admin::PostsController < Admin::ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :set_menu
 
+  skip_forgery_protection only: :org_save
+
   # GET /posts
   def index
     @q = Post.ransack(params[:q])
@@ -110,21 +112,31 @@ class Admin::PostsController < Admin::ApplicationController
     @post.title = title
 
     html = Orgmode::Parser.new(content).to_html
+
     doc = Nokogiri::HTML5.fragment(html)
     doc.at_css("h3").remove
     doc.css("h4").map { |x| x.name = "h3" }
 
     # \\ → 改行が複数あると上手く変換できないバグがある
     # TODO: 全体的なシステムフローを再検討する必要はありそう。Gem Orgmode は廃止したい
-    doc.css("p").map { |x|
-      text = x.text
-      x.children.remove
+    doc.css("p").each do |p|
+      p.traverse do |node|
+        next unless node.text? && node.content.include?("\n")
 
-      text.split("\n").each_with_index do |line, idx|
-        x.add_child(Nokogiri::XML::Text.new(line, doc))
-        x.add_child(Nokogiri::XML::Node.new('br', doc)) unless idx == text.split("\n").size - 1
+        parts = node.content.split("\n")
+
+        parts.each_with_index do |part, i|
+          if i == 0
+            node = node.replace(Nokogiri::XML::Text.new(part, doc))
+          else
+            node = node.add_next_sibling(Nokogiri::XML::Text.new(part, doc))
+          end
+          unless i == parts.size - 1
+            node = node.add_next_sibling(Nokogiri::XML::Node.new("br", doc))
+          end
+        end
       end
-    }
+    end
 
     # このやり方だと </code> と </pre> の間に改行が入る
     doc.css("pre").map { |x|
@@ -142,7 +154,7 @@ class Admin::PostsController < Admin::ApplicationController
     # 汚いけど </code> と </pre> の間に改行が入るのに対処
     @post.content.gsub!(/<\/code>\s+<\/pre>/, "</code></pre>")
 
-    @post.save
+    @post.save!
   end
 
   private
