@@ -91,8 +91,11 @@ class Admin::PostsController < Admin::ApplicationController
 
   def org_save
     content = ""
+    ulid = nil
     title = nil
     post_id = nil
+    site_id = nil
+    tags = nil
 
     params[:content].each_line do |line|
       if line.match?(/^#\+TITLE:/)
@@ -105,15 +108,70 @@ class Admin::PostsController < Admin::ApplicationController
         next
       end
 
+      if line.match?(/^#\+ULID:/)
+        ulid = line.gsub(/^#\+ULID: +/, "")
+        next
+      end
+
+      if line.match?(/^#\+SITE_ID:/)
+        site_id = line.gsub(/^#\+SITE_ID: +/, "").to_i
+        next
+      end
+
+      if line.match?(/^#\+TAGS:/)
+        str = line.gsub(/^#\+TAGS: +/, "")
+        tags = str.split(",").map(&:strip)
+        next
+      end
+
       content << line
     end
 
-    @post = Post.find(post_id)
-    @post.title = title
+    #
+    # Post 特定
+    #
+    unless ulid.nil?
+      # ULID がある場合は ULID ベースに Post を特定 or 新規作成
+      @post = Post.find_by(ulid: ulid)
+      if @post.nil?
+        @post = Post.new(ulid: ulid)
+        @post.posted_at = Time.zone.now.change(hour: 0, min: 0, sec: 0)
+      end
+    else
+      @post = Post.find(post_id)
+    end
+    @post.site_ids = [ site_id ] # 現状、1 サイトのみに対応
 
     html = Orgmode::Parser.new(content).to_html
 
     doc = Nokogiri::HTML5.fragment(html)
+
+    #
+    # タイトル設定
+    #
+    unless title.nil?
+      # TITLE 属性があればそちらを優先
+      @post.title = title
+    else
+      @post.title = doc.at_css("h3").text
+    end
+
+    #
+    # タグ設定
+    #
+    unless tags.nil?
+      @post.tags.clear
+
+      tags.each do |tag_name|
+        tag = Tag.find_by(name: tag_name)
+        if tag.nil?
+          tag = Tag.create(name: tag_name, color: "red")
+        end
+
+        @post.tags << tag
+      end
+    end
+
     doc.at_css("h3").remove
     doc.css("h4").map { |x| x.name = "h3" }
 
