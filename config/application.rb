@@ -38,5 +38,8 @@ module SampleRails7Base
     # i18n
     # https://railsguides.jp/i18n.html
     config.i18n.default_locale = :ja
+
+    # 7.1 からまた変わる
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

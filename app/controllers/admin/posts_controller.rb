@@ -90,57 +90,32 @@ class Admin::PostsController < Admin::ApplicationController
   end
 
   def org_save
-    content = ""
-    ulid = nil
-    title = nil
-    post_id = nil
-    site_id = nil
-    tags = nil
+    properties = OrgUtil.parse_property(params[:content])
 
-    params[:content].each_line do |line|
-      if line.match?(/^#\+TITLE:/)
-        title = line.gsub(/^#\+TITLE: +/, "")
-        next
-      end
-
-      if line.match?(/^#\+POST_ID:/)
-        post_id = line.gsub(/^#\+POST_ID: +/, "").to_i
-        next
-      end
-
-      if line.match?(/^#\+ULID:/)
-        ulid = line.gsub(/^#\+ULID: +/, "")
-        next
-      end
-
-      if line.match?(/^#\+SITE_ID:/)
-        site_id = line.gsub(/^#\+SITE_ID: +/, "").to_i
-        next
-      end
-
-      if line.match?(/^#\+TAGS:/)
-        str = line.gsub(/^#\+TAGS: +/, "")
-        tags = str.split(",").map(&:strip)
-        next
-      end
-
-      content << line
-    end
+    content = params[:content]
+    ulid = properties[:ulid]
+    post_id = properties[:post_id]
+    title = properties[:title]
+    site_ids = properties[:site_ids]
+    tags = properties[:tags]
+    posted_at = properties[:posted_at]
+    thumbnail = properties[:thumbnail]
+    youtube_id = properties[:youtube_id]
 
     #
     # Post 特定
     #
     unless ulid.nil?
       # ULID がある場合は ULID ベースに Post を特定 or 新規作成
-      @post = Post.find_by(ulid: ulid)
+      @post = Post.find_by(ulid:)
       if @post.nil?
-        @post = Post.new(ulid: ulid)
+        @post = Post.new(ulid:)
         @post.posted_at = Time.zone.now.change(hour: 0, min: 0, sec: 0)
       end
     else
       @post = Post.find(post_id)
     end
-    @post.site_ids = [ site_id ] # 現状、1 サイトのみに対応
+    @post.site_ids = site_ids
 
     html = Orgmode::Parser.new(content).to_html
 
@@ -171,6 +146,8 @@ class Admin::PostsController < Admin::ApplicationController
         @post.tags << tag
       end
     end
+
+    @post.posted_at = posted_at unless posted_at.nil?
 
     doc.at_css("h3").remove
     doc.css("h4").map { |x| x.name = "h3" }
@@ -213,6 +190,25 @@ class Admin::PostsController < Admin::ApplicationController
     @post.content.gsub!(/<\/code>\s+<\/pre>/, "</code></pre>")
 
     @post.save!
+
+    # TODO: トランザクション
+    # サムネイル
+    if thumbnail.nil?
+      @post.postmetum.find_by(meta_key: "thubmnail")&.destroy
+    else
+      pm = @post.find_or_build_postmeta("thubmnail")
+      pm.meta_value = thumbnail
+      pm.save!  # 本当はトランザクション
+    end
+
+    # YouTube ID
+    if youtube_id.nil?
+      @post.postmetum.find_by(meta_key: "youtube_id")&.destroy
+    else
+      pm = @post.find_or_build_postmeta("youtube_id")
+      pm.meta_value = youtube_id
+      pm.save!  # 本当はトランザクション
+    end
   end
 
   private
