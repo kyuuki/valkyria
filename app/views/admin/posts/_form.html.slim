@@ -11,6 +11,10 @@
       = form.submit "更新", class: "btn btn-primary"
     .card-body
       .form-group
+        = form.label :ulid, "ULID"
+        = form.text_field :ulid, { class: "form-control col-sm-8" }
+
+      .form-group
         = form.label :title, "タイトル"
         = form.text_field :title, { class: "form-control col-sm-8" }
       .form-group
