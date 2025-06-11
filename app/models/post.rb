@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :postmetum
 
   validates :title, presence: true, length: { maximum: 80 }
-  validates :content, presence: true, length: { maximum: 10000 }
+  validates :content, length: { maximum: 10000 }
   validates :posted_at, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
