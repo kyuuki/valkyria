@@ -49,3 +49,7 @@
     .card-footer
       = form.submit "更新", class: "btn btn-primary"
 
+.card.card-primary
+  .card-footer
+    = button_to "削除", [:admin, post], method: :delete, class: "btn btn-danger"
+

@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   has_and_belongs_to_many :sites
   has_and_belongs_to_many :tags
-  has_many :postmetum
+  has_many :postmetum, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 80 }
   validates :content, length: { maximum: 10000 }

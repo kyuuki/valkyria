@@ -80,7 +80,9 @@ class Admin::PostsController < Admin::ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: "削除しました。"
+    # メタデータも全部削除
+
+    redirect_to admin_posts_url, notice: "削除しました。"
   end
 
   #

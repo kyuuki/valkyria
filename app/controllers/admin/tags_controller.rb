@@ -44,7 +44,7 @@ class Admin::TagsController < Admin::ApplicationController
   # DELETE /tags/1
   def destroy
     @tag.destroy
-    redirect_to tags_url, notice: "削除しました。"
+    redirect_to admin_tags_url, notice: "削除しました。"
   end
 
   private
