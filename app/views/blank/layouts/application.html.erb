@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>
+    <%= content_for(:title) ? yield(:title) + " - " : "" %><%= @site.name %>
+  </title>
+  
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <link href="/blank/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <div>
+    <%= render "blank/layouts/header" %>
+  </div>
+
+  <hr>
+  
+  <div>
+    <%= yield %>
+  </div>
+
+  <hr>
+  
+  <div>
+    <%= render "blank/layouts/footer" %>
+  </div>
+</body>
+</html>

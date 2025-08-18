@@ -1,0 +1,9 @@
+<div>
+  <strong><%= link_to post.title, post %></strong> (<%= post.posted_at.to_date %>)<br>
+  <% unless post.thumbnail.nil? %>
+    <img src="<%= post.thumbnail %>"><br>
+  <% end %>
+  <%= strip_tags(post.content).truncate(100) %>
+</div>
+
+<br>

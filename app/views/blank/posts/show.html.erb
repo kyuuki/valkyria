@@ -1,0 +1,12 @@
+<% content_for :title, @post.title %>
+
+<h2><%= @post.title %></h2>
+<i>$Date: <%= @post.posted_at.to_date %> $</i><br>
+
+<% unless @post.thumbnail.nil? %>
+  <img src="<%= @post.thumbnail %>"><br>
+<% end %>
+
+<%= @post.content.html_safe %>
+
+
