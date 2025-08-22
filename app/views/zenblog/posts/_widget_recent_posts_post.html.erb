@@ -1,0 +1,11 @@
+<div class="post-item">
+  <% if !post.thumbnail.nil? %>
+    <img src="<%= post.thumbnail %>" alt="" class="flex-shrink-0">
+  <% elsif !post.youtube_id.nil? %>
+    <img src="<%= post.youtube_thumbnail %>" alt="" class="flex-shrink-0">
+  <% end %>
+  <div>
+    <h4><%= link_to post.title, post %></h4>
+    <time datetime="<%= l post.posted_at.to_date %>"><%= l post.posted_at.to_date %></time>
+  </div>
+</div><!-- End recent post item-->

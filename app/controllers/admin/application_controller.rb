@@ -6,7 +6,7 @@ class Admin::ApplicationController < ActionController::Base
 
   # 特定のホスト名でしかアクセスできないように
   def check_host
-    unless (request.host == ENV["ADMIN_HOSTNAME"])
+    unless request.host == ENV["ADMIN_HOSTNAME"]
       raise ActionController::BadRequest
     end
   end
