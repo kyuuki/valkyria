@@ -1,21 +1,23 @@
-<!-- Page Title -->
-<div class="page-title position-relative">
-  <div class="breadcrumbs">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i> Home</a></li>
-        <% breadcrumbs.each do |breadcrumb| %>
-          <% if (breadcrumb[1].nil?) %>
-            <li class="breadcrumb-item active current"><%= breadcrumb[0] %></li>
-          <% else %>
-            <li class="breadcrumb-item"><%= link_to breadcrumb[0], breadcrumb[1] %></li>
+<% unless breadcrumbs.nil? %>
+  <!-- Page Title -->
+  <div class="page-title position-relative">
+    <div class="breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i> Home</a></li>
+          <% breadcrumbs.each do |breadcrumb| %>
+            <% if (breadcrumb[1].nil?) %>
+              <li class="breadcrumb-item active current"><%= breadcrumb[0] %></li>
+            <% else %>
+              <li class="breadcrumb-item"><%= link_to breadcrumb[0], breadcrumb[1] %></li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ol>
-    </nav>
-  </div>
+        </ol>
+      </nav>
+    </div>
 
-  <div class="title-wrapper">
-    <h1><%= breadcrumbs.last[0] %></h1>
-  </div>
-</div><!-- End Page Title -->
+    <div class="title-wrapper">
+      <h1><%= breadcrumbs.last[0] %></h1>
+    </div>
+  </div><!-- End Page Title -->
+<% end %>
