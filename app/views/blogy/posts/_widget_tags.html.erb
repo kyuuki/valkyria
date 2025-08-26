@@ -1,0 +1,13 @@
+<!-- Tags Widget -->
+<div class="tags-widget widget-item">
+
+  <h3 class="widget-title">Tags</h3>
+  <ul>
+    <% tags.each do |tag| %>
+      <li>
+        <%= link_to tag.name, "/posts/tags/#{tag.id}" %>
+      </li>
+    <% end %>
+  </ul>
+
+</div><!--/Tags Widget -->

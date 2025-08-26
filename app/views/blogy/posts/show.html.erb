@@ -1,0 +1,102 @@
+<% content_for :title, @post.title %>
+
+<% content_for :menu_setting do %>
+  <% @menu = :blog %>
+<% end %>
+
+<% content_for :breadcrumbs_setting do %>
+  <% @breadcrumbs = [
+       [ "Blog", nil ],
+     ] %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-8">
+
+      <!-- Blog Details Section -->
+      <section id="blog-details" class="blog-details section">
+        <div class="container" data-aos="fade-up">
+
+          <article class="article">
+
+            <div class="hero-img" data-aos="zoom-in">
+              <% if !@post.thumbnail.nil? %>
+                <img src="<%= @post.thumbnail %>" class="img-fluid" alt="" loading="lazy">
+              <% elsif !@post.youtube_id.nil? %>
+                <img src="<%= @post.youtube_thumbnail %>" class="img-fluid" alt="" loading="lazy">
+              <% else %>
+                <img src="https://placebear.com/600/400" class="img-fluid" alt="" loading="lazy">
+              <% end %>
+
+              <!-- <div class="meta-overlay"> -->
+              <!--   <div class="meta-categories"> -->
+              <!--     <a href="#" class="category">Web Development</a> -->
+              <!--     <span class="divider">•</span> -->
+              <!--     <span class="reading-time"><i class="bi bi-clock"></i> 6 min read</span> -->
+              <!--   </div> -->
+              <!-- </div> -->
+            </div>
+
+            <div class="article-content" data-aos="fade-up" data-aos-delay="100">
+              <div class="content-header">
+                <h1 class="title"><%= @post.title %></h1>
+
+                <!-- <div class="author-info"> -->
+                <!--   <div class="author-details"> -->
+                <!--     <img src="assets/img/person/person-f-8.webp" alt="Author" class="author-img"> -->
+                <!--     <div class="info"> -->
+                <!--       <h4>Michael Chen</h4> -->
+                <!--       <span class="role">Senior Web Developer</span> -->
+                <!--     </div> -->
+                <!--   </div> -->
+                <!--   <div class="post-meta"> -->
+                <!--     <span class="date"><i class="bi bi-calendar3"></i> Mar 15, 2025</span> -->
+                <!--     <span class="divider">•</span> -->
+                <!--     <span class="comments"><i class="bi bi-chat-text"></i> 18 Comments</span> -->
+                <!--   </div> -->
+                <!-- </div> -->
+              </div>
+
+              <div class="content">
+                <%= @post.content.html_safe %>
+              </div>
+
+              <!-- <div class="meta-bottom"> -->
+              <!--   <div class="tags-section"> -->
+              <!--     <h4>Related Topics</h4> -->
+              <!--     <div class="tags"> -->
+              <!--       <a href="#" class="tag">Web Development</a> -->
+              <!--       <a href="#" class="tag">Performance</a> -->
+              <!--       <a href="#" class="tag">Best Practices</a> -->
+              <!--       <a href="#" class="tag">Trends</a> -->
+              <!--       <a href="#" class="tag">2025</a> -->
+              <!--     </div> -->
+              <!--   </div> -->
+
+              <!--   <div class="share-section"> -->
+              <!--     <h4>Share Article</h4> -->
+              <!--     <div class="social-links"> -->
+              <!--       <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a> -->
+              <!--       <a href="#" class="facebook"><i class="bi bi-facebook"></i></a> -->
+              <!--       <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> -->
+              <!--       <a href="#" class="copy-link" title="Copy Link"><i class="bi bi-link-45deg"></i></a> -->
+              <!--     </div> -->
+              <!--   </div> -->
+              <!-- </div> -->
+            </div>
+
+          </article>
+
+        </div>
+      </section><!-- /Blog Details Section -->
+
+    </div>
+
+    <div class="col-lg-4 sidebar">
+      <%= render "blogy/posts/sidebar" %>
+    </div>
+
+  </div>
+</div>

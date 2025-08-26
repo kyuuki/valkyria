@@ -1,0 +1,61 @@
+<% content_for :title, "Blog" %>
+
+<% content_for :menu_setting do %>
+  <% @menu = :home %>
+<% end %>
+
+<% content_for :breadcrumbs_setting do %>
+  <% @breadcrumbs = [
+       [ "Blog", nil ],
+     ] %>
+<% end %>
+
+<!-- <\!-- Page Title -\-> -->
+<!-- <div class="page-title position-relative"> -->
+<!--   <div class="breadcrumbs"> -->
+<!--     <nav aria-label="breadcrumb"> -->
+<!--       <ol class="breadcrumb"> -->
+<!--         <li class="breadcrumb-item"><a href="#"><i class="bi bi-house"></i> Home</a></li> -->
+<!--         <li class="breadcrumb-item"><a href="#">Category</a></li> -->
+<!--         <li class="breadcrumb-item active current">Category</li> -->
+<!--       </ol> -->
+<!--     </nav> -->
+<!--   </div> -->
+
+<!--   <div class="title-wrapper"> -->
+<!--     <h1>Blog Category</h1> -->
+<!--     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p> -->
+<!--   </div> -->
+<!-- </div><\!-- End Page Title -\-> -->
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-8">
+
+      <!-- Category Postst Section -->
+      <section id="category-postst" class="category-postst section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row gy-4">
+            <%= render partial: "blogy/posts/post", collection: @posts %>
+          </div>
+        </div>
+
+      </section><!-- /Category Postst Section -->
+
+      <!-- Pagination 2 Section -->
+      <section id="pagination-2" class="pagination-2 section">
+        <%= paginate @posts, views_prefix: "zenblog" %>
+      </section><!-- /Pagination 2 Section -->
+
+    </div>
+
+    <div class="col-lg-4 sidebar">
+      <%= render "blogy/posts/sidebar" %>
+    </div>
+
+  </div>
+</div>
+
+

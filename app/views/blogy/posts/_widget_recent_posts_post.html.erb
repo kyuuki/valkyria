@@ -1,0 +1,13 @@
+<div class="post-item">
+  <% if !post.thumbnail.nil? %>
+    <img src="<%= post.thumbnail %>" class="flex-shrink-0" alt="">
+  <% elsif !post.youtube_id.nil? %>
+    <img src="<%= post.youtube_thumbnail %>" class="flex-shrink-0" alt="">
+  <% else %>
+    <img src="https://placebear.com/600/400" class="flex-shrink-0" alt="">
+  <% end %>
+  <div>
+    <h4><%= link_to post.title, post %></h4>
+    <time datetime="<%= post.posted_at.strftime("%Y-%m-%d") %>"><%= l post.posted_at.to_date %></time>
+  </div>
+</div><!-- End recent post item-->
